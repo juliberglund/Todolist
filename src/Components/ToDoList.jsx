@@ -1,90 +1,84 @@
 import React, { useState } from "react";
-import { use } from "react";
+
+// TodoItem-komponenten som hanterar varje uppgift
+function TodoItem({ task, toggleDone, deleteTask }) {
+  return (
+    <li>
+      <strong className={task.done ? "done" : ""}>{task.title}</strong>
+      <button
+        className="move-up-button"
+        onClick={() => toggleDone(task.id, task.done)}
+      >
+        {task.done ? "Undo" : "Done"}
+      </button>
+      <button className="delete-button " onClick={() => deleteTask(task.id)}>
+        🗑
+      </button>
+    </li>
+  );
+}
 
 export function ToDoList() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
-  function handeInputChange(event) {
+  // Hantera ändringar i input-fältet
+  function handleInputChange(event) {
     setNewTask(event.target.value);
-    //this function changes the text in the placeholder
   }
+
   function addTask() {
     if (newTask.trim() !== "") {
-      setTasks((t) => [...t, newTask]);
+      const newTaskObj = {
+        title: newTask,
+        done: false,
+        id: Date.now(),
+      };
+      setTasks((prevTasks) => [...prevTasks, newTaskObj]);
       setNewTask("");
     } else {
       alert("Wrong input");
     }
   }
-  function deleteTask(index) {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
+
+  function deleteTask(id) {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
   }
-  function moveTaskUp(index) {
-    if (index > 0) {
-      const updatedTasks = [...tasks];
-      [updatedTasks[index], updatedTasks[index - 1]] = [
-        updatedTasks[index - 1],
-        updatedTasks[index],
-      ];
-      setTasks(updatedTasks);
-    }
-  }
-  function moveTaskDown(index) {
-    if (index < tasks.length - 1) {
-      const updatedTasks = [...tasks];
-      [updatedTasks[index], updatedTasks[index + 1]] = [
-        updatedTasks[index + 1],
-        updatedTasks[index],
-      ];
-      setTasks(updatedTasks);
-    }
+
+  function toggleDone(id, doneStatus) {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, done: !doneStatus } : task
+    );
+    setTasks(updatedTasks);
   }
 
   return (
-    <>
-      <section className="to-do-list">
-        <h1>To-Do-List</h1>
-        <section>
-          <input
-            type="text"
-            value={newTask}
-            placeholder="Enter a task..."
-            onChange={handeInputChange}
-          />
-          <button className="add-button" onClick={addTask}>
-            Add
-          </button>
-        </section>
-        <nav>
-          <ol>
-            {tasks.map((task, index) => (
-              <li key={index}>
-                <strong className="text">{task}</strong>
-                <button
-                  className="delete-button"
-                  onClick={() => deleteTask(index)}
-                >
-                  🗑
-                </button>
-                <button
-                  className="move-up-button"
-                  onClick={() => moveTaskUp(index)}
-                >
-                  👆
-                </button>
-                <button
-                  className="move-down-button"
-                  onClick={() => moveTaskDown(index)}
-                >
-                  👇
-                </button>
-              </li>
-            ))}
-          </ol>
-        </nav>
+    <section className="to-do-list">
+      <h1>To-Do-List</h1>
+      <section>
+        <input
+          type="text"
+          value={newTask}
+          placeholder="Enter a task..."
+          onChange={handleInputChange}
+        />
+        <button className="add-button" onClick={addTask}>
+          Add
+        </button>
       </section>
-    </>
+      <nav>
+        <ol>
+          {tasks.map((task) => (
+            <TodoItem
+              key={task.id}
+              task={task}
+              toggleDone={toggleDone}
+              deleteTask={deleteTask}
+            />
+          ))}
+        </ol>
+      </nav>
+    </section>
   );
 }
