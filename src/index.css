@@ -1,0 +1,148 @@
+body {
+  background-color: #162d559f;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #020aab;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.to-do-list {
+  color: #010207a7;
+  text-align: center;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+button {
+  border-color: #242424;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.5 ease;
+}
+
+.add-button {
+  background-color: rgba(137, 43, 226, 0.41);
+  margin-left: 10px;
+  padding: 10px;
+}
+.add-button:hover {
+  background-color: rgba(124, 17, 224, 0.599);
+}
+.delete-button {
+  background-color: rgba(213, 23, 23, 0.672);
+}
+.delete-button:hover {
+  background-color: rgba(198, 10, 10, 0.98);
+}
+.move-up-button {
+  background-color: rgba(39, 213, 23, 0.635);
+}
+.move-up-button:hover {
+  background-color: rgba(10, 198, 54, 0.98);
+}
+.move-down-button {
+  background-color: rgba(236, 110, 0, 0.86);
+}
+.move-down-button:hover {
+  background-color: rgba(223, 130, 8, 0.855);
+}
+
+input[type="text"] {
+  font-size: 1.2 rem;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+li {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px;
+  background-color: #f9f9f9;
+  margin-bottom: 3%;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+}
+
+.delete-button,
+.move-down-button,
+.move-up-button {
+  padding: 8px 12px;
+  font-family: 1.2rem;
+  margin-left: 10px;
+}
